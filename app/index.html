@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA-style poster maker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls">
+    <h1>Vice Cover Studio</h1>
+    <p class="tagline">Your photo, a caption, and a sunset — made into a
+      multi-panel poster cover. Everything runs in your browser; photos are
+      read on your machine and never uploaded.</p>
+
+    <h2>1 · Photos</h2>
+    <p class="hint">Click the preview to pick a panel, then load a photo into
+      it. One photo can fill every panel.</p>
+    <div class="panel-buttons">
+      <button type="button" data-load-panel="0">Photo · Panel 1</button>
+      <button type="button" data-load-panel="1">Photo · Panel 2</button>
+      <button type="button" data-load-panel="2">Photo · Panel 3</button>
+      <button type="button" data-load-panel="3">Photo · Panel 4</button>
+    </div>
+    <input id="file-0" type="file" accept="image/*" data-panel="0" hidden>
+    <input id="file-1" type="file" accept="image/*" data-panel="1" hidden>
+    <input id="file-2" type="file" accept="image/*" data-panel="2" hidden>
+    <input id="file-3" type="file" accept="image/*" data-panel="3" hidden>
+    <div class="row">
+      <button type="button" id="fill-all">Fill all panels with this photo</button>
+      <button type="button" id="clear-panel">Clear panel</button>
+    </div>
+    <p class="hint">Or try a sample photo made for this studio:</p>
+    <div class="row">
+      <button type="button" data-sample="sunset">Sunset Bay</button>
+      <button type="button" data-sample="neon">Neon Street</button>
+      <button type="button" data-sample="drive">Coast Drive</button>
+    </div>
+
+    <h2>2 · Crop the selected panel</h2>
+    <p id="panel-label" class="panel-label">Panel 1 of 3</p>
+    <label>Zoom <span id="zoom-value">100%</span>
+      <input id="zoom" type="range" min="100" max="300" value="100">
+    </label>
+    <label>Move left / right
+      <input id="panx" type="range" min="-40" max="40" value="0">
+    </label>
+    <label>Move up / down
+      <input id="pany" type="range" min="-40" max="40" value="0">
+    </label>
+
+    <h2>3 · Layout, size &amp; grade</h2>
+    <div class="row" role="group" aria-label="Poster layout">
+      <button type="button" data-layout="trio" class="active">Vice Trio</button>
+      <button type="button" data-layout="hero">Hero + Duo</button>
+      <button type="button" data-layout="grid">Four Corners</button>
+    </div>
+    <div class="row" role="group" aria-label="Post size">
+      <button type="button" data-size="square" class="active">1080 × 1080</button>
+      <button type="button" data-size="portrait">1080 × 1350</button>
+      <button type="button" data-size="wide">1920 × 1080</button>
+    </div>
+    <div class="row" role="group" aria-label="Colour grade">
+      <button type="button" data-grade="sunset" class="active">Sunset</button>
+      <button type="button" data-grade="neon">Neon Nights</button>
+      <button type="button" data-grade="dusk">Palm Dusk</button>
+    </div>
+
+    <h2>4 · Caption</h2>
+    <label>Main caption
+      <input id="caption" type="text" maxlength="24" value="Sunset Heist">
+    </label>
+    <label>Sub-caption
+      <input id="subcaption" type="text" maxlength="40" value="Neon Palms Golden Hour">
+    </label>
+
+    <button type="button" id="export" class="export">Export PNG</button>
+    <p id="status" role="status"></p>
+    <p class="fineprint">Original art made in this studio. Not affiliated with
+      Rockstar Games; no game logos, artwork or fonts are used.</p>
+  </section>
+  <section class="preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover preview"></canvas>
+    <p class="hint">Click a panel in the preview to crop and position it.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
